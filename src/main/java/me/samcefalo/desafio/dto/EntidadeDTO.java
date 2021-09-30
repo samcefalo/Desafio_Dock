@@ -6,6 +6,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
 
+/*
+ * Camada de Validação
+ * Data transfer object
+ */
+
 @Data
 public class EntidadeDTO implements Serializable {
 
