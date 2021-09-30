@@ -3,7 +3,9 @@ package me.samcefalo.desafio.resources;
 
 import me.samcefalo.desafio.domain.Entidade;
 import me.samcefalo.desafio.domain.dto.EntidadeDTO;
+import me.samcefalo.desafio.resources.utils.ObjectParser;
 import me.samcefalo.desafio.services.EntidadeService;
+import me.samcefalo.desafio.services.ValidatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +24,16 @@ public class EntidadeResource {
     @Autowired
     private EntidadeService entidadeService;
 
+    @Autowired
+    private ValidatorService validatorService;
+
     /*
      * TODO Desmembrar a entrada, armazenar em uma entidade e retornar um json
      */
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "text/html")
     public Entidade insert(@RequestBody String s) {
         //TODO lidar com formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
-        Entidade entidade = new Entidade(44332211, "123", "PWWIN", 0, "F04A2E4088B", 4, "8.00b3", 0, 16777216, "PWWIN");
+        Entidade entidade = ObjectParser.parseObject(s, Entidade.class, ";");
         return entidadeService.insert(entidade);
     }
 
@@ -36,6 +41,7 @@ public class EntidadeResource {
     public ResponseEntity<Void> update(@Valid @RequestBody EntidadeDTO entidadeDTO, @PathVariable String version,
                                        @PathVariable String model,
                                        @PathVariable int logic) {
+        validatorService.validate(entidadeDTO);
         Entidade entidade = entidadeService.fromDTO(entidadeDTO);
         entidade.setVersion(version);
         entidade.setModel(model);
@@ -61,10 +67,5 @@ public class EntidadeResource {
         Entidade entidade = entidadeService.find(version, name, logic);
         return ResponseEntity.ok().body(new EntidadeDTO(entidade));
     }
-
-    /*
-     * TODO update Entidade
-     * Camada de Validação
-     */
 
 }
