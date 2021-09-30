@@ -36,10 +36,10 @@ public class EntidadeService {
         return entidadeRepository.findAll();
     }
 
-    public Entidade find(String version, String name, int logic) {
-        return entidadeRepository.findByVersionAndModelAndLogic(version, name, logic).orElseThrow(
+    public Entidade find(String version, String model, int logic) {
+        return entidadeRepository.findByVersionAndModelAndLogic(version, model, logic).orElseThrow(
                 () -> new ObjectNotFoundException("Objeto não encontrado. version: " + version + ", " +
-                        "model: " + name + ", " +
+                        "model: " + model + ", " +
                         "logic: " + logic + ", " +
                         "Tipo: " + Entidade.class.getName()));
     }
@@ -48,6 +48,11 @@ public class EntidadeService {
     public Entidade insert(Entidade entidade) {
         entidade = entidadeRepository.save(entidade);
         return entidade;
+    }
+
+    public Entidade update(Entidade entidade) {
+        find(entidade.getVersion(), entidade.getModel(), entidade.getLogic());
+        return insert(entidade);
     }
 
     public Entidade fromDTO(EntidadeDTO entidadeDTO) {

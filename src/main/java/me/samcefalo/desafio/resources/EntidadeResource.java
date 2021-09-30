@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /*
  * Controladores - Controla o fluxo da aplicação (Requests)
  */
@@ -28,6 +30,18 @@ public class EntidadeResource {
         //TODO lidar com formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
         Entidade entidade = new Entidade(44332211, "123", "PWWIN", 0, "F04A2E4088B", 4, "8.00b3", 0, 16777216, "PWWIN");
         return entidadeService.insert(entidade);
+    }
+
+    @RequestMapping(value = "/{version}/{model}/{logic}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@Valid @RequestBody EntidadeDTO entidadeDTO, @PathVariable String version,
+                                       @PathVariable String model,
+                                       @PathVariable int logic) {
+        Entidade entidade = entidadeService.fromDTO(entidadeDTO);
+        entidade.setVersion(version);
+        entidade.setModel(model);
+        entidade.setLogic(logic);
+        entidadeService.update(entidade);
+        return ResponseEntity.noContent().build();
     }
 
     @RequestMapping(method = RequestMethod.GET)
