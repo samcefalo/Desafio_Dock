@@ -22,4 +22,20 @@ public class Entidade implements Serializable {
     private int mxf;
     private String verfm;
 
+    public Entidade() {
+
+    }
+
+    public Entidade(int logic, String serial, String model, int sam, String ptid, int plat, String version, int mxr, int mxf, String verfm) {
+        this.logic = logic;
+        this.serial = serial;
+        this.model = model;
+        this.sam = sam;
+        this.ptid = ptid;
+        this.plat = plat;
+        this.version = version;
+        this.mxr = mxr;
+        this.mxf = mxf;
+        this.verfm = verfm;
+    }
 }
