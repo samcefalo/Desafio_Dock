@@ -27,13 +27,11 @@ public class EntidadeResource {
     @Autowired
     private ValidatorService validatorService;
 
-    /*
-     * TODO Desmembrar a entrada, armazenar em uma entidade e retornar um json
-     */
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "text/html")
     public Entidade insert(@RequestBody String s) {
-        //TODO lidar com formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
-        Entidade entidade = ObjectParser.parseObject(s, Entidade.class, ";");
+        //formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
+        Entidade entidade = ObjectParser.parseFromString(s, ";");
+        validatorService.validate(entidade);
         return entidadeService.insert(entidade);
     }
 
