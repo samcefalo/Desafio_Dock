@@ -1,4 +1,4 @@
-package me.samcefalo.desafio.dto;
+package me.samcefalo.desafio.domain.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
