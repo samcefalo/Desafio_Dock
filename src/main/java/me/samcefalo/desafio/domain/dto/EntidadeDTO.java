@@ -2,10 +2,9 @@ package me.samcefalo.desafio.domain.dto;
 
 import lombok.Data;
 import me.samcefalo.desafio.domain.Entidade;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /*
@@ -16,17 +15,17 @@ import java.io.Serializable;
 @Data
 public class EntidadeDTO implements Serializable {
 
-    @NotNull
+    //TODO resolver required para integers
     private int logic;
-    @NotEmpty
+    @NotBlank
     private String serial;
-    @NotEmpty
+    @NotBlank
     private String model;
     @Min(0)
     private int sam;
     private String ptid;
     private int plat;
-    @NotEmpty
+    @NotBlank
     private String version;
     private int mxr;
     private int mxf;
