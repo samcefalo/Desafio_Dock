@@ -35,4 +35,9 @@ public class EntidadeResource {
         return ResponseEntity.ok().body(entidade);
     }
 
+    /*
+     * TODO update Entidade
+     * Camada de Validação
+     */
+
 }

@@ -1,22 +1,25 @@
-package me.samcefalo.desafio.domain;
+package me.samcefalo.desafio.dto;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 @Data
-@Entity
-public class Entidade implements Serializable {
+public class EntidadeDTO implements Serializable {
 
-    @Id
+    @NotEmpty
     private int logic;
+    @NotEmpty
     private String serial;
+    @NotEmpty
     private String model;
+    @Length(min = 0)
     private int sam;
     private String ptid;
     private int plat;
+    @NotEmpty
     private String version;
     private int mxr;
     private int mxf;
