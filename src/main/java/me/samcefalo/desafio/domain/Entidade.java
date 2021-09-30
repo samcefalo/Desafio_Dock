@@ -27,7 +27,7 @@ public class Entidade implements Serializable {
     private int plat;
     private String version;
     private int mxr;
-    private String mxf;
+    private int mxf;
     private String verfm;
 
 }
