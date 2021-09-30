@@ -19,8 +19,8 @@ public class EntidadeService {
 
     //TODO fazer regras de negocios
 
-    public Entidade find(int logic) {
-        return entidadeRepository.findByLogic(logic).orElseThrow(
+    public Entidade find(int version, String name, int logic) {
+        return entidadeRepository.findByVersionAndModelAndLogic(version, name, logic).orElseThrow(
                 () -> new ObjectNotFoundException("Objeto não encontrado. Logic: " + logic + ", Tipo: " + Entidade.class.getName()));
     }
 

@@ -21,16 +21,18 @@ public class EntidadeResource {
     /*
      * TODO Desmembrar a entrada, armazenar em uma entidade e retornar um json
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "text/html")
     public Entidade insert(@RequestBody String s) {
         //TODO lidar com formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
         return null;
     }
 
     @RequestMapping(value = "/{version}/{name}/{logic}", method = RequestMethod.GET)
-    public ResponseEntity<Entidade> find(@PathVariable int id) {
-        //TODO Procurar uma entidade pela versão/nome/logic
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Entidade> find(@PathVariable int version,
+                                         @PathVariable String name,
+                                         @PathVariable int logic) {
+        Entidade entidade = entidadeService.find(version, name, logic);
+        return ResponseEntity.ok().body(entidade);
     }
 
 }
