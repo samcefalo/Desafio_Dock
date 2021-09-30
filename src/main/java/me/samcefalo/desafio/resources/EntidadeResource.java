@@ -2,8 +2,10 @@ package me.samcefalo.desafio.resources;
 
 
 import me.samcefalo.desafio.domain.Entidade;
+import me.samcefalo.desafio.domain.dto.EntidadeDTO;
 import me.samcefalo.desafio.services.EntidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +29,22 @@ public class EntidadeResource {
         return null;
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<Page<EntidadeDTO>> findAllPage(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                         @RequestParam(value = "linesPerPage", defaultValue = "24") int linesPerPage,
+                                                         @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+                                                         @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
+        return ResponseEntity.ok()
+                .body(entidadeService.findAllPage(page, linesPerPage, orderBy, direction)
+                        .map(entidade -> new EntidadeDTO(entidade)));
+    }
+
     @RequestMapping(value = "/{version}/{name}/{logic}", method = RequestMethod.GET)
-    public ResponseEntity<Entidade> find(@PathVariable int version,
-                                         @PathVariable String name,
-                                         @PathVariable int logic) {
+    public ResponseEntity<EntidadeDTO> find(@PathVariable int version,
+                                            @PathVariable String name,
+                                            @PathVariable int logic) {
         Entidade entidade = entidadeService.find(version, name, logic);
-        return ResponseEntity.ok().body(entidade);
+        return ResponseEntity.ok().body(new EntidadeDTO(entidade));
     }
 
     /*
