@@ -1,6 +1,7 @@
 package me.samcefalo.desafio.services;
 
 import me.samcefalo.desafio.domain.Entidade;
+import me.samcefalo.desafio.domain.dto.EntidadeDTO;
 import me.samcefalo.desafio.repositories.EntidadeRepository;
 import me.samcefalo.desafio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 /*
@@ -28,9 +32,35 @@ public class EntidadeService {
         return entidadeRepository.findAll(pageRequest);
     }
 
-    public Entidade find(int version, String name, int logic) {
+    public List<Entidade> findAll() {
+        return entidadeRepository.findAll();
+    }
+
+    public Entidade find(String version, String name, int logic) {
         return entidadeRepository.findByVersionAndModelAndLogic(version, name, logic).orElseThrow(
-                () -> new ObjectNotFoundException("Objeto não encontrado. Logic: " + logic + ", Tipo: " + Entidade.class.getName()));
+                () -> new ObjectNotFoundException("Objeto não encontrado. version: " + version + ", " +
+                        "model: " + name + ", " +
+                        "logic: " + logic + ", " +
+                        "Tipo: " + Entidade.class.getName()));
+    }
+
+    @Transactional
+    public Entidade insert(Entidade entidade) {
+        entidade = entidadeRepository.save(entidade);
+        return entidade;
+    }
+
+    public Entidade fromDTO(EntidadeDTO entidadeDTO) {
+        return new Entidade(entidadeDTO.getLogic(),
+                entidadeDTO.getSerial(),
+                entidadeDTO.getModel(),
+                entidadeDTO.getSam(),
+                entidadeDTO.getPtid(),
+                entidadeDTO.getPlat(),
+                entidadeDTO.getVersion(),
+                entidadeDTO.getMxr(),
+                entidadeDTO.getMxf(),
+                entidadeDTO.getVerfm());
     }
 
 }

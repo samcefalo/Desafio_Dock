@@ -26,13 +26,14 @@ public class EntidadeResource {
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "text/html")
     public Entidade insert(@RequestBody String s) {
         //TODO lidar com formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
-        return null;
+        Entidade entidade = new Entidade(44332211, "123", "PWWIN", 0, "F04A2E4088B", 4, "8.00b3", 0, 16777216, "PWWIN");
+        return entidadeService.insert(entidade);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Page<EntidadeDTO>> findAllPage(@RequestParam(value = "page", defaultValue = "0") int page,
                                                          @RequestParam(value = "linesPerPage", defaultValue = "24") int linesPerPage,
-                                                         @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+                                                         @RequestParam(value = "orderBy", defaultValue = "logic") String orderBy,
                                                          @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
         return ResponseEntity.ok()
                 .body(entidadeService.findAllPage(page, linesPerPage, orderBy, direction)
@@ -40,7 +41,7 @@ public class EntidadeResource {
     }
 
     @RequestMapping(value = "/{version}/{name}/{logic}", method = RequestMethod.GET)
-    public ResponseEntity<EntidadeDTO> find(@PathVariable int version,
+    public ResponseEntity<EntidadeDTO> find(@PathVariable String version,
                                             @PathVariable String name,
                                             @PathVariable int logic) {
         Entidade entidade = entidadeService.find(version, name, logic);

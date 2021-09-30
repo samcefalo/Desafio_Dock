@@ -15,6 +15,6 @@ import java.util.Optional;
 public interface EntidadeRepository extends JpaRepository<Entidade, Integer> {
 
     @Transactional(readOnly = true)
-    Optional<Entidade> findByVersionAndModelAndLogic(int version, String model, int logic);
+    Optional<Entidade> findByVersionAndModelAndLogic(String version, String model, int logic);
 
 }
