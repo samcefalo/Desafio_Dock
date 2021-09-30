@@ -1,4 +1,4 @@
-package me.samcefalo.desafio.repositories.exceptions;
+package me.samcefalo.desafio.resources.exceptions;
 
 import me.samcefalo.desafio.services.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;

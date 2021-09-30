@@ -1,4 +1,4 @@
-package me.samcefalo.desafio.repositories.exceptions;
+package me.samcefalo.desafio.resources.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;
