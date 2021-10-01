@@ -20,7 +20,7 @@ public class ValidationService {
     @Value("classpath:/schemas/entidade-schema.json")
     private Resource resource;
 
-    public void validadeJson(Object objClass) {
+    public void validateJson(Object objClass) {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonSchemaFactory schemaFactory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V201909);
 

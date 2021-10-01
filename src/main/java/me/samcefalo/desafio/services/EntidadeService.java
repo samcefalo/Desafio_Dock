@@ -39,7 +39,7 @@ public class EntidadeService {
                 () -> new ObjectNotFoundException("Objeto não encontrado. version: " + version + ", " +
                         "model: " + model + ", " +
                         "logic: " + logic + ", " +
-                        "Tipo: " + Entidade.class.getName()));
+                        "tipo: " + Entidade.class.getName()));
     }
 
     @Transactional
