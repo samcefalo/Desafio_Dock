@@ -24,8 +24,6 @@ public class EntidadeService {
     @Autowired
     private EntidadeRepository entidadeRepository;
 
-    //TODO fazer regras de negocios
-
     public Page<Entidade> findAllPage(int page, int linesPerPage, String orderBy, String direction) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage,
                 Sort.Direction.valueOf(direction.toUpperCase()), orderBy);

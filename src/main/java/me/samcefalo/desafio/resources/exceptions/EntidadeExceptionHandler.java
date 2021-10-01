@@ -47,4 +47,10 @@ public class EntidadeExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(validationError);
     }
 
+    @ExceptionHandler(NumberFormatException.class)
+    public ResponseEntity<StandardError> numberFormat(NumberFormatException error, HttpServletRequest request) {
+        StandardError standardError = new StandardError(HttpStatus.BAD_REQUEST.value(), error.getMessage(), System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(standardError);
+    }
+
 }
