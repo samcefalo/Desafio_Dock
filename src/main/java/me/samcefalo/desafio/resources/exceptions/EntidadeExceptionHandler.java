@@ -54,17 +54,6 @@ public class EntidadeExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(validationError);
     }
 
-    /*
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<StandardError> methodArgumentNotValid(MethodArgumentNotValidException error, HttpServletRequest request) {
-        ValidationError validationError = new ValidationError(HttpStatus.BAD_REQUEST.value(), "Erro de Validação", System.currentTimeMillis());
-        for (FieldError fieldError : error.getBindingResult().getFieldErrors()) {
-            validationError.addError(fieldError.getField(), fieldError.getDefaultMessage());
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(validationError);
-    }
-    */
-
     @ExceptionHandler(NumberFormatException.class)
     public ResponseEntity<StandardError> numberFormat(NumberFormatException error, HttpServletRequest request) {
         StandardError standardError = new StandardError(HttpStatus.BAD_REQUEST.value(), error.getMessage(), System.currentTimeMillis());
