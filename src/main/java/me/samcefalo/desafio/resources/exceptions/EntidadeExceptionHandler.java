@@ -47,7 +47,7 @@ public class EntidadeExceptionHandler {
     }
 
     @ExceptionHandler(JsonValidationFailedException.class)
-    public ResponseEntity<StandardError> jsonValidade(JsonValidationFailedException error, HttpServletRequest request) {
+    public ResponseEntity<ValidationError> jsonValidade(JsonValidationFailedException error, HttpServletRequest request) {
         ValidationError validationError = new ValidationError(HttpStatus.BAD_REQUEST.value(), "Erro de Validação", System.currentTimeMillis());
         for (ValidationMessage validationMessage : error.getValidationResult()) {
             validationError.addError(validationMessage.getPath(), validationMessage.getMessage());
@@ -57,7 +57,7 @@ public class EntidadeExceptionHandler {
 
     @ExceptionHandler(NumberFormatException.class)
     public ResponseEntity<StandardError> numberFormat(NumberFormatException error, HttpServletRequest request) {
-        StandardError standardError = new StandardError(HttpStatus.BAD_REQUEST.value(), error.getMessage(), System.currentTimeMillis());
+        StandardError standardError = new StandardError(HttpStatus.BAD_REQUEST.value(), "Formato do número inválido: " + error.getMessage(), System.currentTimeMillis());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(standardError);
     }
 
