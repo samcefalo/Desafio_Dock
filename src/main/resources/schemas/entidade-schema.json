@@ -8,6 +8,9 @@
     "serial": {
       "type": "string"
     },
+    "model": {
+      "type": "string"
+    },
     "sam": {
       "type": "integer",
       "minimum": 0
