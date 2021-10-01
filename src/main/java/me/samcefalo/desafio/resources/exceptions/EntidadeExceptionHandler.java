@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.networknt.schema.ValidationMessage;
 import me.samcefalo.desafio.services.exceptions.JsonValidationFailedException;
 import me.samcefalo.desafio.services.exceptions.ObjectNotFoundException;
+import me.samcefalo.desafio.services.exceptions.ObjectOutOfBoundsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -56,6 +57,12 @@ public class EntidadeExceptionHandler {
 
     @ExceptionHandler(NumberFormatException.class)
     public ResponseEntity<StandardError> numberFormat(NumberFormatException error, HttpServletRequest request) {
+        StandardError standardError = new StandardError(HttpStatus.BAD_REQUEST.value(), error.getMessage(), System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(standardError);
+    }
+
+    @ExceptionHandler(ObjectOutOfBoundsException.class)
+    public ResponseEntity<StandardError> ObjectOutOfBounds(ObjectOutOfBoundsException error, HttpServletRequest request) {
         StandardError standardError = new StandardError(HttpStatus.BAD_REQUEST.value(), error.getMessage(), System.currentTimeMillis());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(standardError);
     }

@@ -8,6 +8,7 @@ import me.samcefalo.desafio.services.EntidadeService;
 import me.samcefalo.desafio.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +26,18 @@ public class EntidadeResource {
     private ValidationService validationService;
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "text/html")
-    public Entidade insert(@RequestBody String s) {
+    public ResponseEntity<Entidade> insert(@RequestBody String s) {
         //formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
         Entidade entidade = ObjectParser.parseFromString(s, ";");
-        return entidadeService.insert(entidade);
+        validationService.validateJson(entidade);
+        return ResponseEntity.status(HttpStatus.CREATED).body(entidadeService.insert(entidade));
     }
 
     @RequestMapping(value = "/{version}/{model}/{logic}", method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@RequestBody EntidadeDTO entidadeDTO, @PathVariable String version,
                                        @PathVariable String model,
                                        @PathVariable int logic) {
-        validationService.validadeJson(entidadeDTO);
+        validationService.validateJson(entidadeDTO);
         Entidade entidade = entidadeService.fromDTO(entidadeDTO);
         entidade.setVersion(version);
         entidade.setModel(model);
