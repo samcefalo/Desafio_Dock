@@ -33,7 +33,7 @@ public class EntidadeResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(entidadeService.insert(entidade));
     }
 
-    @RequestMapping(value = "/{version}/{model}/{logic}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{version}/{model}/{logic}", method = RequestMethod.PUT, consumes = "application/json")
     public ResponseEntity<Void> update(@RequestBody EntidadeDTO entidadeDTO, @PathVariable String version,
                                        @PathVariable String model,
                                        @PathVariable int logic) {
