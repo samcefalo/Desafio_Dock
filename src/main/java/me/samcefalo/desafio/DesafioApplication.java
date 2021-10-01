@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DesafioApplication {
 
     /*
-     * TODO teste automatico
      * TODO readme no github
      * TODO subir no dock: container da aplicação e banco de dados
      */
