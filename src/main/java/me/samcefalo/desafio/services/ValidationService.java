@@ -23,20 +23,17 @@ public class ValidationService {
     public void validateJson(Object objClass) {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonSchemaFactory schemaFactory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V201909);
-
         try {
             JsonNode json = objectMapper.convertValue(objClass, JsonNode.class);
             JsonSchema schema = schemaFactory.getSchema(resource.getInputStream());
             Set<ValidationMessage> validationResult = schema.validate(json);
 
             if (!validationResult.isEmpty()) {
-                validationResult.forEach(vm -> System.out.println(vm.getMessage()));
                 throw new JsonValidationFailedException("Erro de validação.", validationResult);
             }
 
         } catch (IOException e) {
 
         }
-
     }
 }
