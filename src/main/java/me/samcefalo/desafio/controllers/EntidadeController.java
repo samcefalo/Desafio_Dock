@@ -1,9 +1,9 @@
-package me.samcefalo.desafio.resources;
+package me.samcefalo.desafio.controllers;
 
 
+import me.samcefalo.desafio.controllers.utils.ObjectParser;
 import me.samcefalo.desafio.domain.Entidade;
 import me.samcefalo.desafio.domain.dto.EntidadeDTO;
-import me.samcefalo.desafio.resources.utils.ObjectParser;
 import me.samcefalo.desafio.services.EntidadeService;
 import me.samcefalo.desafio.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-public class EntidadeResource {
+public class EntidadeController {
 
     // Camada de serviço
     @Autowired

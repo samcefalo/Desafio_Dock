@@ -1,4 +1,4 @@
-package me.samcefalo.desafio.resources.utils;
+package me.samcefalo.desafio.controllers.utils;
 
 import me.samcefalo.desafio.domain.Entidade;
 import me.samcefalo.desafio.services.exceptions.ObjectOutOfBoundsException;
