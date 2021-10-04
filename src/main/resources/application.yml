@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:mysql://db:3306/desafio_dock?useTimezone=true&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: root
-    password: root
+    url: jdbc:postgresql://ec2-3-209-65-193.compute-1.amazonaws.com:5432/deeutq4arrlpef
+    username: domrgfgyueqiit
+    password: 76a55c060914bd5d9f567eafa56fb5dc678ee034121dd43560a669a07df22925
 
   jpa:
-    hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate.ddl-auto: update
     hibernate:
       jdbc: time_zone = TimeZone
