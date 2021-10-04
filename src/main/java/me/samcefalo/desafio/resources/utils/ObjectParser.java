@@ -1,6 +1,6 @@
-package me.samcefalo.desafio.controllers.utils;
+package me.samcefalo.desafio.resources.utils;
 
-import me.samcefalo.desafio.domain.Entidade;
+import me.samcefalo.desafio.entities.Entidade;
 import me.samcefalo.desafio.services.exceptions.ObjectOutOfBoundsException;
 
 public class ObjectParser {

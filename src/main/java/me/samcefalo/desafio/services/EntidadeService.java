@@ -1,7 +1,7 @@
 package me.samcefalo.desafio.services;
 
-import me.samcefalo.desafio.domain.Entidade;
-import me.samcefalo.desafio.domain.dto.EntidadeDTO;
+import me.samcefalo.desafio.entities.Entidade;
+import me.samcefalo.desafio.entities.dto.EntidadeDTO;
 import me.samcefalo.desafio.repositories.EntidadeRepository;
 import me.samcefalo.desafio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package me.samcefalo.desafio.controllers.exceptions;
+package me.samcefalo.desafio.resources.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;

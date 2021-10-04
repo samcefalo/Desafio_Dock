@@ -1,6 +1,6 @@
 package me.samcefalo.desafio.repositories;
 
-import me.samcefalo.desafio.domain.Entidade;
+import me.samcefalo.desafio.entities.Entidade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
