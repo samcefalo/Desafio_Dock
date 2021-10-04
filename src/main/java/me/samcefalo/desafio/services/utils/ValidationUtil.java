@@ -1,4 +1,4 @@
-package me.samcefalo.desafio.services;
+package me.samcefalo.desafio.services.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Set;
 
 @Service
-public class ValidationService {
+public class ValidationUtil {
 
     @Value("classpath:/schemas/entidade-schema.json")
     private Resource resource;
