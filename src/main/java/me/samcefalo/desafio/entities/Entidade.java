@@ -1,4 +1,4 @@
-package me.samcefalo.desafio.domain;
+package me.samcefalo.desafio.entities;
 
 import lombok.Data;
 

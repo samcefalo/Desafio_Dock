@@ -1,7 +1,7 @@
-package me.samcefalo.desafio.domain.dto;
+package me.samcefalo.desafio.entities.dto;
 
 import lombok.Data;
-import me.samcefalo.desafio.domain.Entidade;
+import me.samcefalo.desafio.entities.Entidade;
 
 import java.io.Serializable;
 
