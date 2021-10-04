@@ -4,8 +4,8 @@ package me.samcefalo.desafio.controllers;
 import me.samcefalo.desafio.entities.Entidade;
 import me.samcefalo.desafio.entities.dto.EntidadeDTO;
 import me.samcefalo.desafio.resources.utils.ObjectParser;
+import me.samcefalo.desafio.resources.utils.Validation;
 import me.samcefalo.desafio.services.EntidadeService;
-import me.samcefalo.desafio.services.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -23,13 +23,13 @@ public class EntidadeController {
     @Autowired
     private EntidadeService entidadeService;
     @Autowired
-    private ValidationUtil validationUtil;
+    private Validation validation;
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "text/html")
     public ResponseEntity<Entidade> insert(@RequestBody String s) {
         //formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
         Entidade entidade = ObjectParser.parseFromString(s, ";");
-        validationUtil.validateJson(entidade);
+        validation.validateJson(entidade);
         return ResponseEntity.status(HttpStatus.CREATED).body(entidadeService.insert(entidade));
     }
 
@@ -37,7 +37,7 @@ public class EntidadeController {
     public ResponseEntity<Void> update(@RequestBody EntidadeDTO entidadeDTO, @PathVariable String version,
                                        @PathVariable String model,
                                        @PathVariable int logic) {
-        validationUtil.validateJson(entidadeDTO);
+        validation.validateJson(entidadeDTO);
         Entidade entidade = entidadeService.fromDTO(entidadeDTO);
         entidade.setVersion(version);
         entidade.setModel(model);
