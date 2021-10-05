@@ -63,7 +63,7 @@ public class EntidadeService {
                 entidadeDTO.getVersion(),
                 entidadeDTO.getMxr(),
                 entidadeDTO.getMxf(),
-                entidadeDTO.getVerfm());
+                entidadeDTO.getVERFM());
     }
 
 }

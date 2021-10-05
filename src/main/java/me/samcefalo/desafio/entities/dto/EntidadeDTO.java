@@ -1,5 +1,6 @@
 package me.samcefalo.desafio.entities.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import me.samcefalo.desafio.entities.Entidade;
 
@@ -22,7 +23,8 @@ public class EntidadeDTO implements Serializable {
     private String version;
     private int mxr;
     private int mxf;
-    private String verfm;
+    @JsonProperty("VERFM")
+    private String VERFM;
 
     public EntidadeDTO() {
 
@@ -38,7 +40,7 @@ public class EntidadeDTO implements Serializable {
         this.version = entidade.getVersion();
         this.mxr = entidade.getMxr();
         this.mxf = entidade.getMxf();
-        this.verfm = entidade.getVerfm();
+        this.VERFM = entidade.getVERFM();
     }
 
 }

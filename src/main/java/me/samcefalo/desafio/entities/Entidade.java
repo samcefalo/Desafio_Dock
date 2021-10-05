@@ -1,5 +1,6 @@
 package me.samcefalo.desafio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -31,7 +32,8 @@ public class Entidade implements Serializable {
     @Column(name = "mxf")
     private int mxf;
     @Column(name = "verfm", length = 32)
-    private String verfm;
+    @JsonProperty("VERFM")
+    private String VERFM;
 
     public Entidade() {
 
@@ -47,6 +49,6 @@ public class Entidade implements Serializable {
         this.version = version;
         this.mxr = mxr;
         this.mxf = mxf;
-        this.verfm = verfm;
+        this.VERFM = verfm;
     }
 }
