@@ -24,11 +24,13 @@ public class EntidadeController {
     private EntidadeService entidadeService;
     @Autowired
     private Validation validation;
+    @Autowired
+    private ObjectParser objectParser;
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json", consumes = "text/html")
     public ResponseEntity<Entidade> insert(@RequestBody String string) {
         //formato: 44332211;123;PWWIN;0;F04A2E4088B;4;8.00b3;0;16777216;PWWIN
-        Entidade entidade = ObjectParser.parseFromString(string, Entidade.class, ";");
+        Entidade entidade = objectParser.parseFromString(string, Entidade.class, ";");
         validation.validateJson(entidade);
         return ResponseEntity.status(HttpStatus.CREATED).body(entidadeService.insert(entidade));
     }

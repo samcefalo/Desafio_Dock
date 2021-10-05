@@ -9,12 +9,12 @@ import com.networknt.schema.ValidationMessage;
 import me.samcefalo.desafio.services.exceptions.JsonValidationFailedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Set;
 
-@Service
+@Component
 public class Validation {
 
     @Value("classpath:/schemas/entidade-schema.json")

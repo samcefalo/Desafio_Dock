@@ -5,15 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import me.samcefalo.desafio.entities.Entidade;
 import me.samcefalo.desafio.services.exceptions.JsonValidationFailedException;
 import me.samcefalo.desafio.services.exceptions.ObjectOutOfBoundsException;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class ObjectParser {
 
-    public static Entidade parseFromString(String string, Class<?> tClass, String separator) {
+    public Entidade parseFromString(String string, Class<?> tClass, String separator) {
         try {
             return deserialize(toJson(string, tClass, separator));
         } catch (JsonProcessingException e) {
@@ -21,12 +23,12 @@ public class ObjectParser {
         }
     }
 
-    private static Entidade deserialize(String string) throws JsonProcessingException {
+    private Entidade deserialize(String string) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(string, Entidade.class);
     }
 
-    private static String toJson(String string, Class<?> tClass, String separator) {
+    private String toJson(String string, Class<?> tClass, String separator) {
         String[] vetor = string.split(separator);
         Map<String, String> jsonElements = new HashMap<>();
         try {
@@ -41,7 +43,7 @@ public class ObjectParser {
         return toJsonString(jsonElements);
     }
 
-    private static String toJsonString(Map<String, String> jsonMap) {
+    private String toJsonString(Map<String, String> jsonMap) {
         String elementsString = jsonMap.entrySet()
                 .stream()
                 .map(entry -> "\"" + entry.getKey() + "\":\"" + entry.getValue() + "\"")
