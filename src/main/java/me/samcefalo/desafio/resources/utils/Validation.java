@@ -33,7 +33,7 @@ public class Validation {
             }
 
         } catch (IOException e) {
-
+            throw new JsonValidationFailedException("Erro de validação.", e);
         }
     }
 }
